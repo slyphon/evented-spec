@@ -11,6 +11,7 @@ require 'evented-spec/spec_helper'
 # neither does coolio.
 # Pick the files accordingly.
 require 'evented-spec/evented_example/em_example'
+require 'evented-spec/evented_example/em_synchrony_example'
 require 'evented-spec/evented_example/amqp_example'
 require 'evented-spec/evented_example/coolio_example'
 

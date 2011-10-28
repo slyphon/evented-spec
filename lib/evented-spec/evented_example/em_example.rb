@@ -9,7 +9,7 @@ module EventedSpec
       #
       def run_em_loop
         begin
-          EM.run do
+          em_run do
             run_hooks :em_before
 
             @spec_exception = nil
@@ -76,6 +76,16 @@ module EventedSpec
           instance.instance_eval(&block)
         end
       end # delayed
+
+      protected
+        # em-synchrony has a top-level method that handles starting the reactor
+        # within a fiber that's used as a replacement to EM.run. this method
+        # allows the SynchronyExample class replace this one method, saving a
+        # lot of copy-pasta
+        def em_run(&blk)
+          EM.run(&blk)
+        end
+
     end # class EMExample < EventedExample
   end # module SpecHelper
 end # module EventedSpec

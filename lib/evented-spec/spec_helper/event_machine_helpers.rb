@@ -37,6 +37,14 @@ module EventedSpec
           @evented_example = EMExample.new(opts, self, &block)
           @evented_example.run
         end
+
+        # Like the em method, but runs the given block inside of EM.synchrony
+        #
+        def em_synchrony(opts={}, &block)
+          opts = default_options.merge(opts.is_a?(Hash) ? opts : { :spec_timeout =>  opts })
+          @evented_example = EMSynchronyExample.new(opts, self, &block)
+          @evented_example.run
+        end
       end # module ExampleMethods
     end # module EventMachine
   end # module SpecHelper
